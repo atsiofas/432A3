@@ -1,0 +1,63 @@
+---
+title: "Assignment 3 Report"
+author: "Alex Tsiofas"
+date: "26/01/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Project Info
+
+January 29th, 2021
+GitHub Repository Link: https://github.com/atsiofas/432A3.git
+Github Username: atsiofas
+
+```{r warning = F}
+library(dplyr)
+```
+
+### Loading the Dataset
+```{r}
+dat <- read.csv("./InputData/FallopiaData.csv")
+summary(dat)
+```
+
+### Working with the data
+
+filtering the "Total" column to remove rows with values less than 60
+```{r}
+
+clean_dat <- dat %>% 
+  filter(Total >= 60) %>% #to remove values less than 60 we filter for values greater than or equal to 60
+  select(Total, Taxon, Scenario, Nutrients) %>% #this line reorders the columns of dat to the specified sequence, any column name not listed is removed
+  mutate(TotalG = Total*0.001) %>% #this will add the TotalG column, converting the total amounts from milligrams to grams by multiplying the mg values by 0.001
+  select(-Total) #this removes the Total column, so TotalG replaces Total
+
+```
+
+### Custom Function
+
+this function takes two inputs and - a vector of data and a string defining the calculation done to the vector
+
+```{r}
+#no default arguments, vector and type need to be specified by the user
+calc <- function(vec, type) {
+  if (type == "Average"){
+    return(mean(vec)) #if string entered is "average", return mean of the vector 
+  } else if (type == "Sum"){
+    return(sum(vec)) #if string is sum, return sum of the vector values
+  } else if (type == "Observations"){
+    return(length(vec)) #if string entered is "Observations", return the number of observations or length of the vector
+  } else {
+    print("Error, unrecognized calculation type") #error statement if string doesnt match any of the above
+  }
+}
+
+calc(clean_dat$TotalG, "Average")
+```
+
+
+
