@@ -22,19 +22,17 @@ library(dplyr)
 ### Loading the Dataset
 ```{r}
 dat <- read.csv("./InputData/FallopiaData.csv")
-summary(dat)
 dat$Nutrients <- as.factor(dat$Nutrients)
 ```
 
 ### Working with the data
 
-filtering the "Total" column to remove rows with values less than 60
 ```{r}
 
 wrangled_dat <- dat %>% 
-  filter(Total >= 60) %>% #to remove values less than 60 we filter for values greater than or equal to 60
+  filter(Total >= 60) %>% #to remove values less than 60 we filter to keep values greater than or equal to 60
   select(Total, Taxon, Scenario, Nutrients) %>% #this line reorders the columns of dat to the specified sequence, any column name not listed is removed
-  mutate(TotalG = Total*0.001) %>% #this will add the TotalG column, converting the total amounts from milligrams to grams by multiplying the mg values by 0.001
+  mutate(TotalG = Total*0.001) %>% #this will create the new TotalG column, converting the total amounts from milligrams to grams by multiplying the mg values by 0.001
   select(-Total) #this removes the Total column, so TotalG replaces Total
 
 ```
