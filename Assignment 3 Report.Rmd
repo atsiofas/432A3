@@ -69,7 +69,13 @@ filtered_dat <- filter(wrangled_dat, Nutrients == 'high')
 #calculating the mean TotalG for high nutrient entries and storing the value
 high_total_mean <- my_calc(filtered_dat$TotalG, "Average")
 
+#print statement for TotalG averages calculated
 print(paste("Low Nutrient Average TotalG: ", low_total_mean, ", High Nutrient Average TotalG: ", high_total_mean))
+```
+### Writing the new data to file
+```{r}
+#the new data should be found in the working directory
+write.csv(wrangled_dat, "WrangledData.csv")
 ```
 
 
