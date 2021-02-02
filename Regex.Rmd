@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Importing the Dataset
 ```{r}
 library(dplyr)
-MData <- read_csv("~/OneDrive - Queen's University/BIOL 432/measurements.csv")
+MData <- read_csv("./measurements.csv")
 head(MData)
 ```
 ## Adding Sp Column
@@ -24,7 +24,7 @@ NData <- MData %>%
   select(Sp, Limb.width, Limb.length, Observer) #rearranging the columns and replacing Organism with Sp as the first column
 head(NData)
 ```
-## Saving the Dataset
+## Exporting the Dataset
 ```{r}
 write.csv(NData, "MeasShort.csv")
 ```
