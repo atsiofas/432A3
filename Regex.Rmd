@@ -20,7 +20,7 @@ head(MData)
 An abbreviated species column is added to the dataset then replaces the Organism column as the first column in a new object called NData
 ```{r}
 NData <- MData %>% 
-  mutate(Sp = sub("(\\w)\\w+", "\\1.", Organism)) %>% #replacing the genus name with the first letter and a period
+  mutate(Sp = sub("(\\w)\\w+", "\\1.", Organism)) %>% #adding a new column replacing the genus name with the first letter and a period
   select(Sp, Limb.width, Limb.length, Observer) #rearranging the columns and replacing Organism with Sp as the first column
 head(NData)
 ```
