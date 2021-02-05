@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Importing the Dataset
 ```{r}
 library(dplyr)
-MData <- read_csv("./measurements.csv")
+MData <- read.csv("./measurements.csv")
 head(MData)
 ```
 ## Adding Sp Column
